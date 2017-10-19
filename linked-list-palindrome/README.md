@@ -1,5 +1,5 @@
 # LinkedListPalindrome.java
-An algorithm that determines whether a given linked list is a palindrome (a word, phrase, or sequence that reads the same backward as forward) or not. Time complexity of the method of O(n).
+An algorithm that determines whether a given linked list is a palindrome (a word, phrase, or sequence that reads the same backward as forward) or not. Time complexity of the method is O(n).
 
 A stack is used to record the first half of the word/phrase in reversed order to then compare the value that is popped off the stack with the second half of the word/phrase.
 
