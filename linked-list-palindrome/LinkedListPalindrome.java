@@ -2,7 +2,7 @@ import java.util.*;
 
 public class LinkedListPalindrome{
 
-    // CONSTRUCTOR CLASS FOR A LINKED LIST NODE
+    // CONSTRUCTOR CLASS FOR A LINKED LIST NODE.
     public static class Node{
         Node next = null;
         String data;
@@ -11,7 +11,7 @@ public class LinkedListPalindrome{
             data = d;
         }
 
-        // ADDS A NODE THAT CONTAINS THE STRING d TO THE END OF THE LINKED LIST
+        // ADDS A NODE THAT CONTAINS THE STRING d TO THE END OF THE LINKED LIST.
         public void appendToEnd(String d){
             Node end = new Node(d);
             Node n = this;
@@ -21,7 +21,7 @@ public class LinkedListPalindrome{
             n.next = end;
         }
 
-        // RETURNS THE LENGTH OF THE ENTIRE PHRASE
+        // RETURNS THE LENGTH OF THE ENTIRE PHRASE.
         public int totalStringLen(){
             Node n = this;
             int count = 0;
@@ -38,7 +38,7 @@ public class LinkedListPalindrome{
         }
 
         // RETURNS THE INDEX RIGHT AT THE HALF WAY POINT OF THE
-        // ENTIRE PHRASE NOT INCLUDING WHITESPACE
+        // ENTIRE PHRASE NOT INCLUDING WHITESPACE.
         public int indexAtHalf(){
             Node n = this;
             int index = 0;
@@ -46,15 +46,12 @@ public class LinkedListPalindrome{
             int i = 0;
             int numOfSpaces = 0;
             while (index < (len/2+i)){
-                if (n.data != " "){
-                    index++;
-                    n = n.next;
-                } else{
+                if (n.data == " "){
                     i++;
-                    index++;
-                    n = n.next;
                     numOfSpaces++;
                 }
+                index++;
+                n = n.next;
             }
             if (len % 2 == 1){
                  index++;
@@ -79,17 +76,18 @@ public class LinkedListPalindrome{
         head.appendToEnd("u");
         head.appendToEnd("n");
 
-
+        System.out.print("(");
         printList(head);
+        System.out.print(")");
         boolean result = isPalindrome(head);
         if (result == true){
-            System.out.println("Given linked list is a palindrome!");
+            System.out.println(" is a palindrome!");
         } else{
-            System.out.println("Given linked list is not a palindrome.");
+            System.out.println(" is not a palindrome.");
         }
     }
 
-    // DETERMINES IF A LINKED LIST IS A PALINDROME
+    // DETERMINES IF A LINKED LIST IS A PALINDROME.
     public static boolean isPalindrome(Node head){
         Node n = head;
         Stack<String> stack = new Stack<String>();
@@ -99,6 +97,7 @@ public class LinkedListPalindrome{
         int index = head.indexAtHalf();
         String s = "";
             while (head.next != null){
+                // ADD ELEMENTS BEFORE THE PHRASE'S MIDDLE ELEMENT TO THE STACK.
                 while (count < index){
                     count++;
                     if (head.data != " "){
@@ -106,7 +105,8 @@ public class LinkedListPalindrome{
                     }
                     head = head.next;
 
-                    // CHECK IF LENGTH OF THE LINKED LIST IS ODD OR EVEN
+                    // IF THE PHRASE IS OF ODD LENGTH: SKIP THE PHRASE'S MIDDLE ELEMENT.
+                    // IF EVEN: INCLUDE THE MIDDLE ELEMENT TO THE STACK.
                     if ((count == index) && (len%2==1)){
                         head = head.next;
                     } else if ((count==index) && (len%2==0)){
@@ -115,6 +115,7 @@ public class LinkedListPalindrome{
                     }
                 }
 
+                // BEGIN TO COMPARE ELEMENT POPPED FROM STACK TO PHRASE'S SECOND HALF.
                 if (head.data == " "){
                     head = head.next;
                     if (head.next == null){
@@ -131,25 +132,25 @@ public class LinkedListPalindrome{
                     }
                 }
             }
+            // MAKE SURE ALL ELEMENTS IN THE STACK ARE POPPED AND COMPARED.
             if (!stack.isEmpty()){
               s = stack.pop();
             }
             if(head==null){
               return true;
             }
-            // CHECK THE LINKED LIST'S FINAL STRING ELEMENT
+            // CHECK THE LINKED LIST'S ELEMENT.
             if (s != head.data){
                 return false;
             }
             return true;
   }
 
-    // PRINTS A LINKED LIST
+    // PRINTS A LINKED LIST.
     public static void printList(Node head){
         while (head != null){
-            System.out.print(head.data + " -> ");
+            System.out.print(head.data);
             head = head.next;
         }
-        System.out.println(".");
     }
 }
