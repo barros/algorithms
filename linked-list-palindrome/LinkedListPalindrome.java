@@ -88,6 +88,8 @@ public class LinkedListPalindrome{
     }
 
     // DETERMINES IF A LINKED LIST IS A PALINDROME.
+    // uses a stack to compare the second half of the string
+    // with the first half
     public static boolean isPalindrome(Node head){
         Node n = head;
         Stack<String> stack = new Stack<String>();
